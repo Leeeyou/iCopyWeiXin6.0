@@ -68,7 +68,7 @@ public class FragmentPagerSupport extends SherlockFragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		setTheme(SampleList.THEME); //Used for theme switching in samples
+		//		setTheme(SampleList.THEME); //Used for theme switching in samples
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_pager);
 
@@ -241,9 +241,10 @@ public class FragmentPagerSupport extends SherlockFragmentActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		//Used to put dark icons on light action bar
-		boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
+		//		boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
 
-		menu.add("Search").setIcon(isLight ? android.R.drawable.ic_menu_search : R.drawable.ic_search).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+		menu.add("Search").setIcon(android.R.drawable.ic_menu_search).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+		//		menu.add("Search").setIcon(isLight ? android.R.drawable.ic_menu_search : R.drawable.ic_search).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 		menu.addSubMenu("发起群聊");
 		menu.addSubMenu("添加朋友");
 		menu.addSubMenu("扫一扫");
