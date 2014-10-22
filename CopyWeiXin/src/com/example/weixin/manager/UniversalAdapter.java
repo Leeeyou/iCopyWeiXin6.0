@@ -17,7 +17,7 @@ import android.widget.BaseAdapter;
 public abstract class UniversalAdapter<T> extends BaseAdapter {
 	protected final Context context;
 
-	protected final List<T> mData;
+	protected final List<T> mData; 
 
 	protected int layoutId;
 

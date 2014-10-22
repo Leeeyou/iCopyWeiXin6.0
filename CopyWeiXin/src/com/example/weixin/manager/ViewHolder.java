@@ -34,7 +34,7 @@ public class ViewHolder {
 		imageLoader = new ImageLoader(mQueue, new BitmapCache());
 	}
 
-	public class BitmapCache implements ImageCache {
+	public class BitmapCache implements ImageCache { 
 		private LruCache<String, Bitmap> mCache;
 
 		public BitmapCache() {
