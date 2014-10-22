@@ -1,4 +1,4 @@
-package com.example.weixin;
+package com.example.weixin.utils;
 
 import android.content.Context;
 import android.view.View;

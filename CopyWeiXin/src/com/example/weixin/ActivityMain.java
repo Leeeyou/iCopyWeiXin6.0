@@ -16,6 +16,9 @@
 
 package com.example.weixin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -30,51 +33,71 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.example.weixin.bean.Cheeses;
+import com.example.weixin.bean.Portrait;
+import com.example.weixin.bean.Talks;
+import com.example.weixin.bean.WeiXin;
+import com.example.weixin.fragment.FragmentWeixin;
+import com.example.weixin.utils.T;
 
-public class FragmentPagerSupport extends SherlockFragmentActivity {
+/**
+ * 主界面
+ * @author xzzz
+ *
+ */
+public class ActivityMain extends SherlockFragmentActivity {
 	static final int NUM_ITEMS = 4;
 
 	MyAdapter mAdapter;
 
+	@InjectView(R.id.pager)
 	ViewPager mPager;
 
 	String mCurFilter;
 
-	private LinearLayout ll_weixin;
-	private LinearLayout ll_contacts;
-	private LinearLayout ll_found;
-	private LinearLayout ll_own;
+	@InjectView(R.id.ll_weixin)
+	LinearLayout ll_weixin;
+	@InjectView(R.id.ll_contacts)
+	LinearLayout ll_contacts;
+	@InjectView(R.id.ll_found)
+	LinearLayout ll_found;
+	@InjectView(R.id.ll_own)
+	LinearLayout ll_own;
 
-	private ImageView goto_weixin;
-	private ImageView goto_contacts;
-	private ImageView goto_found;
-	private ImageView goto_own;
+	//	private ImageView goto_weixin;
+	//	private ImageView goto_contacts;
+	//	private ImageView goto_found;
+	//	private ImageView goto_own;
 
-	private TextView tv_weixin;
-	private TextView tv_contacts;
-	private TextView tv_found;
-	private TextView tv_own;
+	@InjectView(R.id.tv_weixin)
+	TextView tv_weixin;
+	@InjectView(R.id.tv_contacts)
+	TextView tv_contacts;
+	@InjectView(R.id.tv_found)
+	TextView tv_found;
+	@InjectView(R.id.tv_own)
+	TextView tv_own;
 
 	private TextView[] tvList = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		//		setTheme(SampleList.THEME); //Used for theme switching in samples
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_pager);
+		ButterKnife.inject(this);
 
 		mAdapter = new MyAdapter(getSupportFragmentManager());
-
-		mPager = (ViewPager) findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);
 		mPager.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override
@@ -93,55 +116,41 @@ public class FragmentPagerSupport extends SherlockFragmentActivity {
 			}
 		});
 
-		goto_weixin = (ImageView) findViewById(R.id.goto_weixin);
-		goto_contacts = (ImageView) findViewById(R.id.goto_contacts);
-		goto_found = (ImageView) findViewById(R.id.goto_found);
-		goto_own = (ImageView) findViewById(R.id.goto_own);
-
-		tv_weixin = (TextView) findViewById(R.id.tv_weixin);
-		tv_contacts = (TextView) findViewById(R.id.tv_contacts);
-		tv_found = (TextView) findViewById(R.id.tv_found);
-		tv_own = (TextView) findViewById(R.id.tv_own);
-
 		tvList = new TextView[] { tv_weixin, tv_contacts, tv_found, tv_own };
-
-		ll_weixin = (LinearLayout) findViewById(R.id.ll_weixin);
-		ll_contacts = (LinearLayout) findViewById(R.id.ll_contacts);
-		ll_found = (LinearLayout) findViewById(R.id.ll_found);
-		ll_own = (LinearLayout) findViewById(R.id.ll_own);
 
 		setDescColor(0);
 
-		ll_weixin.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				mPager.setCurrentItem(0);
-				setDescColor(0);
-			}
-		});
-		ll_contacts.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				mPager.setCurrentItem(1);
-				setDescColor(1);
-			}
-		});
-		ll_found.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				mPager.setCurrentItem(2);
-				setDescColor(2);
-			}
-		});
-		ll_own.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				mPager.setCurrentItem(3);
-				setDescColor(3);
-			}
-		});
-
 		getSupportActionBar().setDisplayShowHomeEnabled(false);
-
 	}
 
+	@OnClick(R.id.ll_weixin)
+	public void ClickWeiXin() {
+		mPager.setCurrentItem(0);
+		setDescColor(0);
+	}
+
+	@OnClick(R.id.ll_contacts)
+	public void ClickContacts() {
+		mPager.setCurrentItem(1);
+		setDescColor(1);
+	}
+
+	@OnClick(R.id.ll_found)
+	public void ClickFound() {
+		mPager.setCurrentItem(2);
+		setDescColor(2);
+	}
+
+	@OnClick(R.id.ll_own)
+	public void ClickOwn() {
+		mPager.setCurrentItem(3);
+		setDescColor(3);
+	}
+
+	/**
+	 * 选中时颜色
+	 * @param index
+	 */
 	protected void setDescColor(int index) {
 		for (int i = 0; i < tvList.length; i++) {
 			TextView textView = tvList[i];
@@ -168,7 +177,21 @@ public class FragmentPagerSupport extends SherlockFragmentActivity {
 
 		@Override
 		public Fragment getItem(int position) {
-			return ArrayListFragment.newInstance(position);
+			switch (position) {
+			case 0:
+				List<WeiXin> list = new ArrayList<WeiXin>();
+				for (int i = 1; i < 101; i++) {
+					WeiXin wx = new WeiXin();
+					wx.setImgUrl(Portrait.sPortraitStrings[i % 4]);
+					wx.setText1(Cheeses.sCheeseStrings[i % 100]);
+					wx.setText2(Talks.sTalkStrings[i % 22]);
+					wx.setTime("晚上18:39");
+					list.add(wx);
+				}
+				return FragmentWeixin.newInstance(list);
+			default:
+				return ArrayListFragment.newInstance(position);
+			}
 		}
 	}
 
@@ -240,11 +263,7 @@ public class FragmentPagerSupport extends SherlockFragmentActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		//Used to put dark icons on light action bar
-		//		boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
-
 		menu.add("Search").setIcon(android.R.drawable.ic_menu_search).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-		//		menu.add("Search").setIcon(isLight ? android.R.drawable.ic_menu_search : R.drawable.ic_search).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 		menu.addSubMenu("发起群聊");
 		menu.addSubMenu("添加朋友");
 		menu.addSubMenu("扫一扫");

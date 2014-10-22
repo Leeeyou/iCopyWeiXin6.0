@@ -11,23 +11,28 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.LayoutParams;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.example.weixin.utils.KeyBoardUtils;
+import com.example.weixin.utils.T;
 
 public class ActivitySearch extends SherlockFragmentActivity implements SearchView.OnQueryTextListener {
 
-	private SearchView mSearchView;
-	private RelativeLayout rl_search;
-	private LinearLayout ll_back;
-	private LinearLayout ll_voice;
+	@InjectView(R.id.rl_search)
+	RelativeLayout rl_search;
+	SearchView mSearchView;
+	LinearLayout ll_back;
+	LinearLayout ll_voice;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.activity_search);
+		ButterKnife.inject(this);
 
 		rl_search = (RelativeLayout) findViewById(R.id.rl_search);
 		rl_search.setOnClickListener(new OnClickListener() {
@@ -66,8 +71,6 @@ public class ActivitySearch extends SherlockFragmentActivity implements SearchVi
 				T.showShort(ActivitySearch.this, "语音");
 			}
 		});
-
-		//		KeyBoardUtils.openKeybord(mEditText, mContext);
 
 		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.showSoftInput(mSearchView, InputMethodManager.RESULT_SHOWN);

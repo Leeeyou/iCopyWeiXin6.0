@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.weixin;
+package com.example.weixin.bean;
 
 public class Cheeses {
 
