@@ -27,7 +27,7 @@ import com.example.weixin.manager.ViewHolder;
 public class FragmentWeixin extends SherlockListFragment {
 	private static List<WeiXin> wxs = new ArrayList<WeiXin>();
 	private UniversalAdapter<WeiXin> wxAdapter;
-	private WeiXin wx = null;
+	private WeiXin wx = null; 
 
 	public static FragmentWeixin newInstance(List<WeiXin> list) {
 		FragmentWeixin fw = new FragmentWeixin();
