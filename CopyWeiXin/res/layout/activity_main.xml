@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:leeyou="http://schemas.android.com/apk/res/com.leeyou.weixin6"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/id_viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/tabbg"
+        android:orientation="horizontal" >
+
+        <com.leeyou.weixin6.ui.ChangeColorIconWithTextView
+            android:id="@+id/id_indicator_weixin"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            leeyou:icon="@drawable/icon_main_weixin"
+            leeyou:text="@string/tab_weixin"
+            leeyou:text_size="12sp" />
+
+        <com.leeyou.weixin6.ui.ChangeColorIconWithTextView
+            android:id="@+id/id_indicator_linkman"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            leeyou:icon="@drawable/icon_main_linkman"
+            leeyou:text="@string/tab_contact"
+            leeyou:text_size="12sp" />
+
+        <com.leeyou.weixin6.ui.ChangeColorIconWithTextView
+            android:id="@+id/id_indicator_found"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            leeyou:icon="@drawable/icon_main_found"
+            leeyou:text="@string/tab_find"
+            leeyou:text_size="12sp" />
+
+        <com.leeyou.weixin6.ui.ChangeColorIconWithTextView
+            android:id="@+id/id_indicator_own"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            leeyou:icon="@drawable/icon_main_own"
+            leeyou:text="@string/tab_me"
+            leeyou:text_size="12sp" />
+    </LinearLayout>
+
+</LinearLayout>
