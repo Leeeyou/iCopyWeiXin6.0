@@ -6,6 +6,7 @@ CopyWeiXin5.4
 修改
 
 /*****************************************************************************************************/
+
 修改主界面的图标为变色效果，用到的知识点如下：
 一：自定义属性的运用（TypeArray）
   在使用自定义属性的时候，碰到的 Error parsing XML: unbound prefix的问题，解决办法：http://stackoverflow.com/questions/2221221/frequent-problem-in-android-view-error-parsing-xml-unbound-prefix.
@@ -18,6 +19,8 @@ CopyWeiXin5.4
 
 三：变色原理则是绘制颜色的时候设置alpha值
 
-参考：http://blog.csdn.net/lmj623565791/article/details/41087219 以及 http://blog.csdn.net/lmj623565791/article/details/24555655
+参考：http://blog.csdn.net/lmj623565791/article/details/41087219 
+以及 
+http://blog.csdn.net/lmj623565791/article/details/24555655
 
 /*****************************************************************************************************/
